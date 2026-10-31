@@ -1,0 +1,25 @@
+# PyTorch & Apple Silicon MPS Support
+torch>=2.2.0
+torchaudio>=2.2.0
+torchvision>=0.17.0
+
+# Mathematical & Convex Optimization
+numpy>=1.26.0
+pandas>=2.2.0
+cvxpy>=1.4.0
+scipy>=1.12.0
+
+# Exchange Integration & Async WebSockets
+python-binance>=1.0.19
+aiohttp>=3.9.0
+websockets>=12.0
+
+# Configuration, Utilities & Logging
+pyyaml>=6.0.1
+python-dotenv>=1.0.1
+tqdm>=4.66.0
+colorlog>=6.8.0
+
+# Code Quality & Testing
+pytest>=8.0.0
+pytest-asyncio>=0.23.0

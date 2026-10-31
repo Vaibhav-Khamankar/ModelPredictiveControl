@@ -1,0 +1,58 @@
+# Environment & Secrets (CRITICAL for security)
+.env
+*.pem
+*.key
+
+# Python Virtual Environments
+kairos_env/
+venv/
+.venv/
+env/
+
+# Python Bytecode & Cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# PyTorch / Model Artifacts & Data
+*.pth
+*.pt
+*.bin
+*.onnx
+train_results/
+data/
+*.csv
+
+# OS & Editor Files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+# Runtime logs and telemetry
+logs/
+live_telemetry_*.jsonl
+
+# Correlation and clustering outputs
+/correlation_matrix.*
+/*correlation*.csv
+/*correlation*.html
+/crypto_clusters.html
+/crypto_dashboard.html
+/crypto_table.html
+/crypto_categories.csv
+
+# Private runtime logs and telemetry
+/logs/
+/live_telemetry_*.jsonl
+
+# Exclude analysis outputs and private runtime logs
+/allcryptolist.py
+/correlation_matrix.*
+/*correlation*.csv
+/crypto_clusters.html
+/crypto_dashboard.html
+/crypto_table.html
+/crypto_categories.csv
+/logs/
+/live_telemetry_*.jsonl

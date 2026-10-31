@@ -1,0 +1,32 @@
+# ==============================================================================
+# HISTORICAL BACKTESTING ENGINE CONFIGURATION
+# ==============================================================================
+
+backtest:
+  initial_capital: 10000.0        # Initial capital in USDT
+  start_date: "2023-01-01"
+  end_date: "2026-01-01"
+  candle_interval: "5m"           # Options: 1m, 5m, 15m, 1h
+  rebalance_frequency_steps: 12   # Rebalance every 12 candles (e.g., 1 hour for 5m candles)
+
+execution_simulation:
+  latency_milliseconds: 200      # Simulated execution delay between signal and trade execution
+  fill_model: "next_candle_open"  # Execution model: 'next_candle_open' or 'volume_weighted_average'
+  slippage_model: "quadratic"     # Models market impact based on position size relative to volume
+  base_fee_pct: 0.0010            # 0.10% Binance taker fee
+
+benchmarks:
+  primary: "BTCUSDT_buy_and_hold"
+  equal_weight_basket: true      # Compare performance against an 1/N allocation across all 10 assets
+
+reporting:
+  save_plots: true
+  output_dir: "reports/backtests/"
+  metrics:
+    - "sharpe_ratio"
+    - "sortino_ratio"
+    - "max_drawdown"
+    - "calmar_ratio"
+    - "win_rate"
+    - "total_turnover"
+    - "profit_factor"

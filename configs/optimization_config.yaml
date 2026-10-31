@@ -1,0 +1,27 @@
+# ==============================================================================
+# CONVEX OPTIMIZATION & PORTFOLIO RISK CONSTRAINTS (PHASE 2)
+# ==============================================================================
+
+solver:
+  type: "markowitz_mean_variance" # Options: "markowitz_mean_variance", "kelly_criterion", "black_litterman"
+  backend: "cvxpy"                # Python convex optimization library
+  target_metric: "max_sharpe"     # Options: "max_sharpe", "min_variance", "max_return"
+
+bounds:
+  allow_shorting: false           # Set to true only if using a margin/futures account
+  max_gross_exposure: 1.0         # 1.0 = 100% of capital. >1.0 requires leverage.
+  min_weight_per_asset: 0.0       # Minimum allocation per coin (0.0 allows zero allocation)
+  max_weight_per_asset: 0.25      # STRICT LIMIT: No single coin can exceed 25% of the portfolio
+
+risk_management:
+  target_volatility: 0.40         # Annualized target portfolio volatility (40%)
+  max_drawdown_limit: 0.15        # Circuit breaker: Halt trading if portfolio drops 15% from ATH
+
+penalties:
+  transaction_cost_bps: 10        # 0.10% Binance Spot maker/taker fee penalty applied per trade
+  slippage_bps: 5                 # 0.05% assumed slippage penalty for market orders
+  turnover_penalty: 0.05          # Gamma factor to penalize heavy rebalancing (prevents overtrading)
+
+cash_management:
+  risk_free_rate: 0.05            # 5% baseline yield (e.g., stablecoin staking)
+  reserve_cash_pct: 0.10          # Always keep 10% of the portfolio in USDT/USDC

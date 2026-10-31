@@ -1,0 +1,63 @@
+# ==============================================================================
+# KAIROS 50M BASE MODEL & LORA ADAPTER CONFIGURATION
+# ==============================================================================
+
+model:
+  name: "kairos-50m-crypto"
+  total_parameters: 50000000
+  frozen_trunk: true
+  context_length: 96           # Number of historical input candles
+  forecast_horizon: 96         # Number of predicted future candles
+  num_assets: 10               # Target cryptocurrency coins
+
+input_features:
+  raw_state:
+    - "open"
+    - "high"
+    - "low"
+    - "close"
+    - "volume"
+    - "open_interest"
+    - "funding_rate"
+  num_features: 7              # Total raw state dimensions per asset
+
+lora:
+  r: 16                        # Rank of the low-rank adaptation matrices
+  alpha: 32                    # Scaling factor (typically 2 * r)
+  dropout: 0.05                # Dropout probability for LoRA layers
+  bias: "none"                 # Options: "none", "all", "lora_only"
+  target_modules:              # Internal linear attention layers to adapt
+    - "q"
+    - "k"
+    - "v"
+    - "o"
+
+training:
+  epochs: 3
+  batch_size: 256
+  learning_rate: 0.0001
+  weight_decay: 0.01
+  grad_clip_norm: 1.0
+  precision: "float32"         # Set to "float16" or "bfloat16" for MPS optimization
+  device: "mps"                # Apple Silicon Metal Performance Shaders
+
+output:
+  alpha_vector_dim: 10         # Expected returns vector per asset
+  covariance_matrix_dim: [10, 10] # Covariance/Risk state across 10 assets
+
+# ==============================================================================
+# LIVE & PAPER TRADING EXECUTION CONFIGURATION
+# ==============================================================================
+
+USE_TESTNET: false
+PAPER_TRADING: true
+
+trading:
+  initial_balance: 1000.0     # Starting virtual USDT cash
+  fee_rate: 0.001              # 0.1% Binance taker fee
+  slippage: 0.001              # 0.1% simulated slippage penalty
+  max_drawdown: 0.05           # 5% circuit breaker limit
+  cooldown_duration: 12        # 12 ticks (1 hour) halt after circuit breaker
+  min_trade_weight: 0.01       # Minimum trade weight (1%) to avoid micro trades
+
+telemetry_dir: "logs/telemetry"
