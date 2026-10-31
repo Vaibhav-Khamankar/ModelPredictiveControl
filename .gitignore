@@ -67,3 +67,16 @@ live_telemetry_*.jsonl
 /crypto_categories.csv
 /logs/
 /live_telemetry_*.jsonl
+
+# Correlation and clustering outputs
+/allcryptolist.py
+/correlation_matrix.*
+/*correlation*
+/crypto_clusters.html
+/crypto_dashboard.html
+/crypto_table.html
+/crypto_categories.csv
+
+# Private runtime logs and telemetry
+/logs/
+/live_telemetry_*.jsonl
