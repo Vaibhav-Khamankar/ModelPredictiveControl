@@ -90,7 +90,7 @@ Generated market data, tensor files, and model weights are stored under `data/` 
 The model and entry point are configured to use PyTorch's **MPS** device, so the primary runtime target is an Apple Silicon Mac with a compatible PyTorch installation. Python 3.11 is a suitable starting point for the current project environment.
 
 ```bash
-git clone <your-repository-url>
+git clone (https://github.com/Vaibhav-Khamankar/ModelPredictiveControl)
 cd ModelPredictiveControl
 
 python3 -m venv .venv
