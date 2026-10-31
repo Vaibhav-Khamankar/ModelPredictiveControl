@@ -56,3 +56,14 @@ live_telemetry_*.jsonl
 /crypto_categories.csv
 /logs/
 /live_telemetry_*.jsonl
+
+# Exclude analysis outputs and private runtime logs
+/allcryptolist.py
+/correlation_matrix.*
+/*correlation*.csv
+/crypto_clusters.html
+/crypto_dashboard.html
+/crypto_table.html
+/crypto_categories.csv
+/logs/
+/live_telemetry_*.jsonl
